@@ -1,2 +1,4 @@
 .meteor/local
 .meteor/meteorite
+.meteor/.finished-upgraders
+.meteor/.id
