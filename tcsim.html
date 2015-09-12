@@ -3,12 +3,30 @@
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+  <h1>Simple Solid State Tesla Coil Simulator</h1>
 
-  {{> hello}}
+  {{#mathjax}}
+	<p>Spiral Coil Inductance
+	 $$L = \frac{(NR)^2}{8R + 11W}$$
+	 <ol>
+
+	 <li>L = inductance of coil in microhenrys (µH)</li>
+	 <li>R = average radius of the coil in inches</li>
+	 <li>N = number of turns</li>	 
+	 <li>W = width of the coil in inches</li>
+	 </ol>
+	</p>
+
+	<p>Helical Coil Inductance
+	 $$L = \frac{(NR)^2}{9R + 10H}$$
+	 <ol>
+	 <li>L = inductance of coil in microhenrys (µH)</li>
+	 <li>N = number of turns</li>
+	 <li>R = radius of coil in inches (Measure from the center of the coil to the middle of the wire.)</li>
+	 <li>H = height of coil in inches</li>
+	 </ol>
+	</p>
+  {{/mathjax}}
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
-</template>
+
