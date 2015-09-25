@@ -2,38 +2,9 @@
   <title>tcsim</title>
 </head>
 
+
+
 <body>
-  <h1>Simple Solid State Tesla Coil Simulator</h1>
-
-  {{#mathjax}}
-	<p>Spiral Coil Inductance
-	 $$L = \frac{(NR)^2}{8R + 11W}$$
-	 <ol>
-
-	 <li>L = inductance of coil in microhenrys (µH)</li>
-	 <li>R = average radius of the coil in inches</li>
-	 <li>N = number of turns</li>	 
-	 <li>W = width of the coil in inches</li>
-	 </ol>
-	</p>
-
-	<p>Helical Coil Inductance
-	 $$L = \frac{(NR)^2}{9R + 10H}$$
-	 <ol>
-	 <li>L = inductance of coil in microhenrys (µH)</li>
-	 <li>N = number of turns</li>
-	 <li>R = radius of coil in inches (Measure from the center of the coil to the middle of the wire.)</li>
-	 <li>H = height of coil in inches</li>
-	 </ol>
-	</p>
-
-	<p>
-	Energy Storage Mechanisms
-	 $$J = \frac{V^2 C}{2}$$
-	 $$J = \frac{I^2 L}{2}$$
-	</p>
-  {{/mathjax}}
-
   Lets build a tesla coil!
 
   {{> stepOne}}
@@ -44,13 +15,94 @@
   {{> simulator}}
  --></body>
 
-<template name="stepOne">
-  Lets start with the approximate size of the secondary coil which you wish to build:
-	<input type="text" name="height"> cm
-  Reccomend an aspect ration (H/R) from 3-7
+<template name="equations">
+  <h1>Simple Solid State Tesla Coil Simulator</h1>
 
-  Now we can select the coil 
+  {{#mathjax}}
+	<p>Spiral Coil Inductance
+	 $$L = \frac{(NR)^2}{8R + 11W}$$
+	 <ol>
+	  <li>L = inductance of coil in microhenrys (µH)</li>
+	  <li>R = average radius of the coil in inches</li>
+	  <li>N = number of turns</li>	 
+	  <li>W = width of the coil in inches</li>
+	 </ol>
+	</p>
 
-
+	<p>Helical Coil Inductance
+	 $$L = \frac{(NR)^2}{9R + 10H}$$
+	 <ol>
+	  <li>L = inductance of coil in microhenrys (µH)</li>
+	  <li>N = number of turns</li>
+	  <li>R = radius of coil in inches (Measure from the center of the coil to the middle of the wire.)</li>
+	  <li>H = height of coil in inches</li>
+	 </ol>
+	</p>
+	<p>
+	Energy Storage Mechanisms
+	 $$J = \frac{V^2 C}{2}$$
+	 $$J = \frac{I^2 L}{2}$$
+	</p>
+  {{/mathjax}}
 </template>
 
+<template name="motivation">
+Building a solid-state (singing) Tesla coil is a pretty complicated undertaking, and this is a tool
+to help guide one in the construction of such a device.  At each step the parameters you pick will be
+graphically compared with other confirmed working Tesla coil designs so that choiced can be made to fall 
+within (or outside of!) the known engineering envelope.
+</template>
+
+<template name="stepSecondary">
+  Lets start with the approximate size of the secondary coil which you wish to build:
+  <ol>
+	  <li><input type="text" name="height"> cm</li>
+	  <li><input type="text" name="width"> cm</li>
+  </ol>
+  Reccomend an aspect ration (H/R) from 3-7
+
+  Next lets figure out how much wire is going on this thing:
+  <ol>
+  	<li>Drop Down with Wire Gauges <input type="text" name="gauge"></li>
+  	<li>Packing Factor <input type="text" name="factor"> %</li>
+  </ol>
+
+  Alright, that gives us a ballpark estimate of the secondary coil's inductance:
+  {{inductance}}
+  <button name="calc">Calculate</button>
+</template>
+
+
+<template name="stepTwo">
+  Now that we have an estimate of your secondary coil's inductance, we need to make some
+  electrical decisions.  Next we can pick the resonance frequency of your coil.
+
+  This quantity is given by
+  {{#mathjax}}
+    $$f = /frac{1}{2 /pi /sqrt(LC)}
+  {{/mathjax}}
+
+  The typical range of resonance frequencies is ~30kHz - 200kHz.  
+	<!-- Pro/Con of different freq selections -->
+
+  Lower resonance frequencies require less speedy switching circuits (cheaper) but typically
+  a larger capacitor bank size.  
+
+  High frequency typically have better "spin-up" time, but have more stringent requirements on 
+  switching speed of the driving circuitry.  
+
+  <!-- Plot secondary size vs resonance freq -->
+  <!-- Plot of secondary L vs resonance freq -->
+</template>
+
+<template name="stepThree">
+Capacitor bank design
+
+Based on the previous step, we are shooting for 
+
+  {{#mathjax}}
+  ~$$ \mu F$$ 
+  {{/mathjax}}
+
+of capacatince.  
+</template>
