@@ -2,18 +2,36 @@
   <title>tcsim</title>
 </head>
 
-
-
 <body>
-  Lets build a tesla coil!
+  {{> navBar}}
+  <br>
+</body>
 
-  {{> stepOne}}
-<!--   {{> stepTwo}}
-  {{> stepThree}}
-  {{> stepFour}}
-  {{> saveCoil}}
-  {{> simulator}}
- --></body>
+<template name="navBar">
+  <div class="container theme-showcase" role="main">
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <h1>Tesla Coil Design Concerns</h1>
+      <p>
+        <button class=".btn-primary nav-button" name="mot">Motivation</button>
+        <button class=".btn-primary nav-button" name="sI">Secondary Inductor</button>
+        <button class=".btn-primary nav-button" name="sC">Secondary Capacitor</button>
+        <button class=".btn-primary nav-button" name="pI">Primary Inductor</button>
+        <button class=".btn-primary nav-button" name="pC">Primary Capacitor</button>
+        <button class=".btn-primary nav-button" name="cS">Component Selection</button>
+        <button class=".btn-primary nav-button" name="sim">Simulation</button>
+      </p>
+    </div>
+  <div class="page-header">
+    {{> Template.dynamic template= activeTemplateName }}
+  </div>
+  </div>
+</template>
+
+<template name="mode">
+ {{renderStage}}
+</template>
+
 
 <template name="equations">
   <h1>Simple Solid State Tesla Coil Simulator</h1>
@@ -46,34 +64,58 @@
   {{/mathjax}}
 </template>
 
-<template name="motivation">
+<template name="mot">
+<div class="page-header">
 Building a solid-state (singing) Tesla coil is a pretty complicated undertaking, and this is a tool
 to help guide one in the construction of such a device.  At each step the parameters you pick will be
 graphically compared with other confirmed working Tesla coil designs so that choiced can be made to fall 
 within (or outside of!) the known engineering envelope.
+</div>
 </template>
 
-<template name="stepSecondary">
+<template name="sI">
   Lets start with the approximate size of the secondary coil which you wish to build:
-  <ol>
-	  <li><input type="text" name="height"> cm</li>
-	  <li><input type="text" name="width"> cm</li>
-  </ol>
-  Reccomend an aspect ration (H/R) from 3-7
+  <ul>
+	  <li>Width <input type="text" id="height"> cm</li>
+	  <li>Height <input type="text" id="width"> cm</li>
+  </ul>
+  Reccomend an aspect ratio (H/R) from 3-7.  
 
+  Now lets pick some wire for our coil: {{> awgDropdown}}
   Next lets figure out how much wire is going on this thing:
   <ol>
-  	<li>Drop Down with Wire Gauges <input type="text" name="gauge"></li>
-  	<li>Packing Factor <input type="text" name="factor"> %</li>
+  	<li>Wire Gauges  <input type="text" id="gauge"></li>
+  	<li>Packing Factor <input type="text" id="packing"> %</li>
+    <li>Ohms per km <input type="text" id="ohms "> Ohms</li>
   </ol>
+
+  Amount of wire:
 
   Alright, that gives us a ballpark estimate of the secondary coil's inductance:
   {{inductance}}
+  Also, an estimate of the capacatance and resistance.
+  {{capactince}}, {{resistance}}
   <button name="calc">Calculate</button>
 </template>
 
+<template name="awgEntry">
+  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{gaugeName}} gauge ({{diameter}}mm)</a></li>
+</template>
 
-<template name="stepTwo">
+<template name="awgDropdown">
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Select Wire Gauge
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+      {{#each wireGauge}}
+      {{> awgEntry}}
+      {{/each}}
+    </ul>
+  </div>
+</template>
+
+
+<template name="sC">
   Now that we have an estimate of your secondary coil's inductance, we need to make some
   electrical decisions.  Next we can pick the resonance frequency of your coil.
 
@@ -82,7 +124,7 @@ within (or outside of!) the known engineering envelope.
     $$f = /frac{1}{2 /pi /sqrt(LC)}
   {{/mathjax}}
 
-  The typical range of resonance frequencies is ~30kHz - 200kHz.  
+  The typical range of resonance frequencies is ~30kHz - 2MHz.  
 	<!-- Pro/Con of different freq selections -->
 
   Lower resonance frequencies require less speedy switching circuits (cheaper) but typically
