@@ -3,6 +3,26 @@ Template.mode.onRendered(function(){
   console.log("Mode Rendered");
 });
 
+Template.navBar.events({
+  "click .nav-button": function(event, template){
+    var newTemplateName = event.currentTarget.name;
+    console.log("Navigating to " + newTemplateName);
+    Session.set("nav", newTemplateName);
+  }
+})
+
+Template.navBar.onRendered(function(){
+  Session.setDefault("nav", "mot");
+});
+
+
+Template.navBar.helpers({
+  "activeTemplateName": function() {
+    return Session.get("nav");
+  }
+});
+
+
 // Template.stepOne.helpers({
 //   ratio: function () {
 //   	var h = $("height").value().toNumber();
