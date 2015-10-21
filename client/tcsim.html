@@ -14,8 +14,8 @@
       <h1>Tesla Coil Design Concerns</h1>
       <p>
         <button class=".btn-primary nav-button" name="mot">Motivation</button>
-        <button class=".btn-primary nav-button" name="sI">Secondary Inductor</button>
-        <button class=".btn-primary nav-button" name="sC">Secondary Capacitor</button>
+        <button class=".btn-primary nav-button" name="design_secondary_inductor">Secondary Inductor</button>
+        <button class=".btn-primary nav-button" name="design_secondary_capacitor">Secondary Capacitor</button>
         <button class=".btn-primary nav-button" name="pI">Primary Inductor</button>
         <button class=".btn-primary nav-button" name="pC">Primary Capacitor</button>
         <button class=".btn-primary nav-button" name="cS">Component Selection</button>
@@ -73,46 +73,6 @@ within (or outside of!) the known engineering envelope.
 </div>
 </template>
 
-<template name="sI">
-  Lets start with the approximate size of the secondary coil which you wish to build:
-  <ul>
-	  <li>Width <input type="text" id="height"> cm</li>
-	  <li>Height <input type="text" id="width"> cm</li>
-  </ul>
-  Reccomend an aspect ratio (H/R) from 3-7.  
-
-  Now lets pick some wire for our coil: {{> awgDropdown}}
-  Next lets figure out how much wire is going on this thing:
-  <ol>
-  	<li>Wire Gauges  <input type="text" id="gauge"></li>
-  	<li>Packing Factor <input type="text" id="packing"> %</li>
-    <li>Ohms per km <input type="text" id="ohms "> Ohms</li>
-  </ol>
-
-  Amount of wire:
-
-  Alright, that gives us a ballpark estimate of the secondary coil's inductance:
-  {{inductance}}
-  Also, an estimate of the capacatance and resistance.
-  {{capactince}}, {{resistance}}
-  <button name="calc">Calculate</button>
-</template>
-
-<template name="awgEntry">
-  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{gaugeName}} gauge ({{diameter}}mm)</a></li>
-</template>
-
-<template name="awgDropdown">
-  <div class="dropdown">
-    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Select Wire Gauge
-    <span class="caret"></span></button>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-      {{#each wireGauge}}
-      {{> awgEntry}}
-      {{/each}}
-    </ul>
-  </div>
-</template>
 
 
 <template name="sC">
