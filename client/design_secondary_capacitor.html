@@ -1,28 +1,35 @@
 
 <template name="topload_selector">
   <div class="dropdown">
-    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Select Wire Gauge
+    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Top-Load Geometry: {{currentToploadName}}
     <span class="caret"></span></button>
     <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-	  <li role="presentation" id="spherical_topload">
-	  	<a role="menuitem" tabindex="-1" href="#">Spherical</a>
-	  </li>
+  	  <li role="presentation" id="spherical_topload">
+  	  	<a role="menuitem" tabindex="-1" href="#">Spherical</a>
+  	  </li>
       <li role="presentation" id="toroidal_topload">
       	<a role="menuitem" tabindex="-1" href="#">Torus</a>
-      </li>
-      <li role="presentation" id="multi_topload">
-        <a role="menuitem" tabindex="-1" href="#">Multi-Torus</a>
       </li>
     </ul>
   </div>
 </template>
 
+<!-- The below calculation are based on equations found at this site -->
+<!-- http://www.teslacoildesign.com/design.html#design_topload -->
 <template name="spherical_topload">
-  Spherical!!!
+  Spherical Toploads are by the simplest and best characterized.  Unfortunately, they are only really appropriate for fairly small coils:
+
+  2.83915 × (Sphere Diameter ∕ 2)
+
+  (I approximate this as 2 * sqrt(2) * r)
 </template>
 
 <template name="toroidal_topload">
-  Torioidal!!!
+  <img src="/images/torus.png" width="25%">
+  <ul>
+    <li>Large Radius:<input type="text" id="r_big"> cm</li>
+    <li>Small Radius:<input type="text" id="r_sml"> cm</li>
+  </ul>
 </template>
 
 <template name="multi_topload">
@@ -39,5 +46,5 @@
   Category of topload Designs
   {{> topload_selector }}
 
-  <button name="calc">Calculate</button>
+  {{> Template.dynamic template= topload_session_var }}
 </template>
