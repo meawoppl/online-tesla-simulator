@@ -1,0 +1,43 @@
+
+<template name="topload_selector">
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Select Wire Gauge
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+	  <li role="presentation" id="spherical_topload">
+	  	<a role="menuitem" tabindex="-1" href="#">Spherical</a>
+	  </li>
+      <li role="presentation" id="toroidal_topload">
+      	<a role="menuitem" tabindex="-1" href="#">Torus</a>
+      </li>
+      <li role="presentation" id="multi_topload">
+        <a role="menuitem" tabindex="-1" href="#">Multi-Torus</a>
+      </li>
+    </ul>
+  </div>
+</template>
+
+<template name="spherical_topload">
+  Spherical!!!
+</template>
+
+<template name="toroidal_topload">
+  Torioidal!!!
+</template>
+
+<template name="multi_topload">
+  MultiToroidal!
+</template>
+
+
+<template name="design_secondary_capacitor">
+  Based on the secondary inductor you have designed, 
+  here is the rough envelope of possible toploads (capacitors).
+
+  (Sketch of 1/sqrt(LC) vs typical frequency envelope)
+
+  Category of topload Designs
+  {{> topload_selector }}
+
+  <button name="calc">Calculate</button>
+</template>

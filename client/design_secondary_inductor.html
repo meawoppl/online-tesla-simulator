@@ -1,24 +1,26 @@
 <template name="design_secondary_inductor">
+  <h3>Engineering Parameters</h3>
+
   Lets start with the approximate size of the secondary coil which you wish to build:
   <ul>
-	  <li>Width <input type="text" id="height"> cm</li>
-	  <li>Height <input type="text" id="width"> cm</li>
+    <li>Width <input type="text" id="height"> cm</li>
+    <li>Height <input type="text" id="width"> cm</li>
   </ul>
   Reccomend an aspect ratio (H/R) from 3-7.  
 
   Now lets pick some wire for our coil: {{> awgDropdown}}
   Next lets figure out how much wire is going on this thing:
   <ol>
-  	<li>Wire Gauges  <input type="text" id="gauge"></li>
-  	<li>Packing Factor <input type="text" id="packing"> %</li>
+    <li>Wire Gauges  <input type="text" id="gauge"></li>
+    <li>Packing Factor <input type="text" id="packing"> %</li>
     <li>Ohms per km <input type="text" id="ohms "> Ohms</li>
   </ol>
-
   Amount of wire:
 
+  <h3>Electrical Properties:</h3>
   Alright, that gives us a ballpark estimate of the secondary coil's inductance:
-  {{inductance}}
+  {{ inductance }}
   Also, an estimate of the capacatance and resistance.
-  {{capactince}}, {{resistance}}
+  {{ capacatance }}, {{ resistance }}
   <button name="calc">Calculate</button>
 </template>

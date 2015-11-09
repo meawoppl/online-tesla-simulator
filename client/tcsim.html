@@ -11,15 +11,17 @@
   <div class="container theme-showcase" role="main">
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
-      <h1>Tesla Coil Design Concerns</h1>
+      <h1>DRSSTC Design Calculator</h1>
       <p>
         <button class=".btn-primary nav-button" name="mot">Motivation</button>
+        <button class=".btn-primary nav-button" name="save_load">Save/Load</button>
         <button class=".btn-primary nav-button" name="design_secondary_inductor">Secondary Inductor</button>
         <button class=".btn-primary nav-button" name="design_secondary_capacitor">Secondary Capacitor</button>
-        <button class=".btn-primary nav-button" name="pI">Primary Inductor</button>
-        <button class=".btn-primary nav-button" name="pC">Primary Capacitor</button>
-        <button class=".btn-primary nav-button" name="cS">Component Selection</button>
-        <button class=".btn-primary nav-button" name="sim">Simulation</button>
+        <button class=".btn-primary nav-button" name="design_primary_inductor">Primary Inductor</button>
+        <button class=".btn-primary nav-button" name="design_primary_capacitor">Primary Capacitor</button>
+        <button class=".btn-primary nav-button" name="component_selection">Component Selection</button>
+        <button class=".btn-primary nav-button" name="design_envelope">Envelope Graphs</button>
+        <button class=".btn-primary nav-button" name="simulator">Simulation</button>
       </p>
     </div>
   <div class="page-header">
@@ -65,12 +67,20 @@
 </template>
 
 <template name="mot">
-<div class="page-header">
-Building a solid-state (singing) Tesla coil is a pretty complicated undertaking, and this is a tool
-to help guide one in the construction of such a device.  At each step the parameters you pick will be
-graphically compared with other confirmed working Tesla coil designs so that choiced can be made to fall 
-within (or outside of!) the known engineering envelope.
-</div>
+  <div class="page-header">
+    <p>
+      Building a solid-state (singing) Tesla coil is a pretty complicated undertaking, and this is a tool
+      to help guide one in the construction of such a device.  At each step the parameters you pick will be
+      graphically compared with other confirmed working Tesla coil designs so that choiced can be made to fall 
+      within (or outside of!) the known engineering envelope.
+    </p>
+
+    <p>
+      Please note that this tool is in no way complete, and at best values given by 
+      it are designed to be used as "back-of-the-envelope" figures for guiding a more
+      rigorous design.
+    </p>
+  </div>
 </template>
 
 

@@ -1,5 +1,9 @@
 var PI = 3.14159265359;
 
+Session.setDefault("sI_r", 5);
+Session.setDefault("sI_c", 5);
+Session.setDefault("sI_i", 5);
+
 var recalcPrimaryInductorProperties = function() {
   console.log("Recalculatig");
   var h = parseFloat($("#height").val());
@@ -58,7 +62,7 @@ Template.design_secondary_inductor.events({
 });
 
 Template.design_secondary_inductor.helpers({
-  capacatance: function(){Session.get("sI_c")},
-  inductance: function(){Session.get("sI_i")},
-  resistance: function(){Session.get("sI_r")}
+  capacatance: function(){return Session.get("sI_c");},
+  inductance:  function(){return Session.get("sI_i");},
+  resistance:  function(){return Session.get("sI_r");}
 });
